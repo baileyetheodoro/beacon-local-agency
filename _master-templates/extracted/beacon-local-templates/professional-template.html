@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{BUSINESS_NAME}} | {{PRIMARY_SERVICE}} in {{CITY_OR_AREA}}</title>
+  <meta name="description" content="{{BUSINESS_NAME}} offers {{PRIMARY_SERVICE}}, {{SECONDARY_SERVICE}}, and {{THIRD_SERVICE}} in {{CITY_OR_AREA}}. View services, recent work, FAQs, and contact details.">
+  <style>
+    :root {
+      --ink: #12212b;
+      --text: #59636b;
+      --paper: #f7f4ed;
+      --surface: #ffffff;
+      --accent: #b85f42;
+      --accent-two: #2f766d;
+      --line: rgba(18, 33, 43, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+    * { min-width: 0; }
+    html, body { max-width: 100%; overflow-x: hidden; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.58;
+      overflow-wrap: anywhere;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 4px;
+    }
+    img { display: block; max-width: 100%; }
+    .container { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    .skip-link {
+      position: absolute;
+      left: 20px;
+      top: -80px;
+      z-index: 20;
+      padding: 10px 14px;
+      background: var(--ink);
+      color: var(--surface);
+      font-weight: 800;
+      max-width: 100%;
+      text-align: center;
+      white-space: normal;
+    }
+    .skip-link:focus { top: 14px; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      border-bottom: 1px solid var(--line);
+      background: rgba(247, 244, 237, 0.94);
+      backdrop-filter: blur(12px);
+    }
+    nav {
+      display: flex;
+      min-height: 74px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand { font-weight: 900; }
+    .nav-links { display: flex; align-items: center; gap: 20px; color: var(--text); font-size: 0.94rem; }
+    .menu-toggle {
+      display: none;
+      min-height: 44px;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--ink);
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .menu-icon {
+      display: grid;
+      gap: 4px;
+      width: 18px;
+    }
+    .menu-icon span {
+      display: block;
+      height: 2px;
+      background: currentColor;
+    }
+    .button {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border: 1px solid var(--ink);
+      border-radius: 6px;
+      background: var(--ink);
+      color: var(--surface);
+      font-weight: 800;
+    }
+    .button.alt { border-color: var(--accent); background: var(--accent); }
+    .button.secondary { background: transparent; color: var(--ink); border-color: var(--line); }
+    .hero {
+      display: grid;
+      min-height: 92vh;
+      grid-template-columns: 1.02fr 0.98fr;
+      align-items: stretch;
+    }
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 84px max(40px, calc((100vw - 1180px) / 2)) 84px max(40px, calc((100vw - 1180px) / 2));
+    }
+    .hero-media {
+      min-height: 520px;
+      background:
+        linear-gradient(180deg, rgba(18,33,43,0.08), rgba(18,33,43,0.2)),
+        url("{{HERO_IMAGE_URL}}") center / cover;
+    }
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { margin: 0; line-height: 1.02; }
+    h1 { max-width: 720px; font-size: clamp(3.2rem, 7vw, 6.4rem); letter-spacing: -0.04em; }
+    h2 { font-size: clamp(2.2rem, 4.2vw, 4.2rem); letter-spacing: -0.025em; }
+    h3 { font-size: 1.35rem; }
+    p { color: var(--text); }
+    .lead { max-width: 620px; margin: 22px 0 30px; font-size: 1.16rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    section { padding: 88px 0; }
+    .services-top {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 42px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .service {
+      min-height: 250px;
+      padding: 24px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .proof {
+      background: #e7eee9;
+    }
+    .proof-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 42px;
+      align-items: start;
+    }
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+    .stat {
+      padding: 18px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(18, 33, 43, 0.12);
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .gallery-item {
+      min-height: 260px;
+      padding: 18px;
+      display: flex;
+      align-items: end;
+      border: 1px solid rgba(18, 33, 43, 0.12);
+      background: linear-gradient(180deg, rgba(18,33,43,0), rgba(18,33,43,0.72)), var(--image) center / cover;
+      color: #fff;
+      font-weight: 800;
+    }
+    .faq-list {
+      display: grid;
+      gap: 12px;
+      max-width: 880px;
+      margin-top: 32px;
+    }
+    details {
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+    summary {
+      cursor: pointer;
+      color: var(--ink);
+      font-weight: 900;
+    }
+    .contact {
+      background: var(--ink);
+      color: var(--surface);
+    }
+    .contact h2 { color: var(--surface); }
+    .contact p { color: rgba(255,255,255,0.74); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 40px;
+    }
+    .contact-box {
+      padding: 28px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+    footer { padding: 30px 0; color: var(--text); font-size: 0.92rem; }
+    @media (max-width: 900px) {
+      nav { position: relative; }
+      .menu-toggle { display: inline-flex; }
+      .nav-links {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(100% + 1px);
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        box-shadow: 0 18px 44px rgba(18, 33, 43, 0.14);
+      }
+      .nav-links.is-open { display: flex; }
+      .nav-links a {
+        padding: 13px 12px;
+      }
+      .hero, .services-top, .proof-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero-copy { padding: 70px 20px; }
+      .hero-media { min-height: 360px; }
+      .service-grid, .stat-row, .gallery { grid-template-columns: 1fr; }
+      section { padding: 64px 0; }
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <a class="brand" href="#top">{{BUSINESS_NAME}}</a>
+      <button class="menu-toggle" type="button" aria-controls="site-menu" aria-expanded="false">
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        Menu
+      </button>
+      <div class="nav-links" id="site-menu">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#faq">FAQ</a>
+        <a class="button" href="#contact">Get a Quote</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">{{CITY_OR_AREA}} {{BUSINESS_CATEGORY}}</p>
+        <h1>{{CREDIBILITY_FOCUSED_HEADLINE}}</h1>
+        <p class="lead">{{SUPPORTING_COPY_WITH_MAIN_SERVICES_AND_CUSTOMER_TYPE}}</p>
+        <div class="hero-actions">
+          <a class="button alt" href="#contact">{{PRIMARY_CTA}}</a>
+          <a class="button secondary" href="#work">See Our Work</a>
+        </div>
+      </div>
+      <div class="hero-media" role="img" aria-label="{{HERO_IMAGE_DESCRIPTION}}"></div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="services-top">
+          <div>
+            <p class="eyebrow">Services</p>
+            <h2>{{SERVICES_HEADLINE}}</h2>
+          </div>
+          <p>{{SERVICES_INTRO}}</p>
+        </div>
+        <div class="service-grid">
+          <article class="service"><h3>{{SERVICE_1}}</h3><p>{{SERVICE_1_DESCRIPTION}}</p></article>
+          <article class="service"><h3>{{SERVICE_2}}</h3><p>{{SERVICE_2_DESCRIPTION}}</p></article>
+          <article class="service"><h3>{{SERVICE_3}}</h3><p>{{SERVICE_3_DESCRIPTION}}</p></article>
+          <article class="service"><h3>{{SERVICE_4}}</h3><p>{{SERVICE_4_DESCRIPTION}}</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="proof" id="work">
+      <div class="container proof-grid">
+        <div>
+          <p class="eyebrow">Proof</p>
+          <h2>{{PROOF_HEADLINE}}</h2>
+          <p>{{PROOF_COPY}}</p>
+          <div class="stat-row">
+            <div class="stat"><strong>{{STAT_1}}</strong><br>{{STAT_1_LABEL}}</div>
+            <div class="stat"><strong>{{STAT_2}}</strong><br>{{STAT_2_LABEL}}</div>
+            <div class="stat"><strong>{{STAT_3}}</strong><br>{{STAT_3_LABEL}}</div>
+          </div>
+        </div>
+        <div class="gallery">
+          <div class="gallery-item" style="--image: url('{{PROJECT_IMAGE_1_URL}}')">{{PROJECT_1_TITLE}}</div>
+          <div class="gallery-item" style="--image: url('{{PROJECT_IMAGE_2_URL}}')">{{PROJECT_2_TITLE}}</div>
+          <div class="gallery-item" style="--image: url('{{PROJECT_IMAGE_3_URL}}')">{{PROJECT_3_TITLE}}</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <p class="eyebrow">Questions</p>
+        <h2>{{FAQ_HEADLINE}}</h2>
+        <div class="faq-list">
+          <details><summary>{{FAQ_1_QUESTION}}</summary><p>{{FAQ_1_ANSWER}}</p></details>
+          <details><summary>{{FAQ_2_QUESTION}}</summary><p>{{FAQ_2_ANSWER}}</p></details>
+          <details><summary>{{FAQ_3_QUESTION}}</summary><p>{{FAQ_3_ANSWER}}</p></details>
+          <details><summary>{{FAQ_4_QUESTION}}</summary><p>{{FAQ_4_ANSWER}}</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <p class="eyebrow">Get started</p>
+          <h2>{{CONTACT_HEADLINE}}</h2>
+          <p>{{CONTACT_COPY}}</p>
+        </div>
+        <div class="contact-box">
+          <p><strong>Phone:</strong> {{PHONE}}</p>
+          <p><strong>Email:</strong> {{EMAIL}}</p>
+          <p><strong>Service area:</strong> {{CITY_OR_AREA}}</p>
+          <a class="button alt" href="mailto:{{EMAIL}}">{{PRIMARY_CTA}}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© {{YEAR}} {{BUSINESS_NAME}}. All rights reserved.</div>
+  </footer>
+  <script>
+    const menuButton = document.querySelector(".menu-toggle");
+    const siteMenu = document.querySelector("#site-menu");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+      menuButton.setAttribute("aria-expanded", String(!isOpen));
+      siteMenu.classList.toggle("is-open", !isOpen);
+    });
+
+    siteMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        menuButton.setAttribute("aria-expanded", "false");
+        siteMenu.classList.remove("is-open");
+      });
+    });
+  </script>
+</body>
+</html>

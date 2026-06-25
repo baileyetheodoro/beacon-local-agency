@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{BUSINESS_NAME}} | {{PRIMARY_SERVICE}} in {{CITY_OR_AREA}}</title>
+  <meta name="description" content="{{BUSINESS_NAME}} offers {{PRIMARY_SERVICE}}, {{SECONDARY_SERVICE}}, and {{THIRD_SERVICE}}.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <a class="brand" href="index.html">{{BUSINESS_NAME}}</a>
+      <button class="menu-toggle" type="button" aria-controls="site-menu" aria-expanded="false">
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        Menu
+      </button>
+      <div class="nav-links" id="site-menu">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a class="button" href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero"><div class="container hero-copy"><p class="eyebrow">{{CITY_OR_AREA}} {{BUSINESS_CATEGORY}}</p><h1>{{CREDIBILITY_FOCUSED_HEADLINE}}</h1><p class="lead">{{SUPPORTING_COPY_WITH_MAIN_SERVICES_AND_CUSTOMER_TYPE}}</p><div class="hero-actions"><a class="button" href="contact.html">{{PRIMARY_CTA}}</a><a class="button secondary" href="portfolio.html">See Our Work</a></div></div></section>
+    <section><div class="container grid-3"><article class="card"><h3>{{TRUST_POINT_1}}</h3><p>{{TRUST_POINT_1_COPY}}</p></article><article class="card"><h3>{{TRUST_POINT_2}}</h3><p>{{TRUST_POINT_2_COPY}}</p></article><article class="card"><h3>{{TRUST_POINT_3}}</h3><p>{{TRUST_POINT_3_COPY}}</p></article></div></section>
+  </main>
+  <footer>
+    <div class="container">&copy; {{YEAR}} {{BUSINESS_NAME}}. All rights reserved.</div>
+  </footer>
+  <script src="menu.js"></script>
+</body>
+</html>

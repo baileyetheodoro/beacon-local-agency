@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{BUSINESS_NAME}} Work | {{CITY_OR_AREA}}</title>
+  <meta name="description" content="View recent {{BUSINESS_NAME}} work and project examples.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <a class="brand" href="index.html">{{BUSINESS_NAME}}</a>
+      <button class="menu-toggle" type="button" aria-controls="site-menu" aria-expanded="false">
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        Menu
+      </button>
+      <div class="nav-links" id="site-menu">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a class="button" href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="page-hero"><div class="container"><p class="eyebrow">Portfolio</p><h1>{{PROOF_HEADLINE}}</h1><p class="lead">{{PROOF_COPY}}</p></div></section>
+    <section><div class="container grid-3"><article class="card"><h2>{{PROJECT_1_TITLE}}</h2><p>{{PROJECT_1_SUMMARY}}</p></article><article class="card"><h2>{{PROJECT_2_TITLE}}</h2><p>{{PROJECT_2_SUMMARY}}</p></article><article class="card"><h2>{{PROJECT_3_TITLE}}</h2><p>{{PROJECT_3_SUMMARY}}</p></article></div></section>
+  </main>
+  <footer>
+    <div class="container">&copy; {{YEAR}} {{BUSINESS_NAME}}. All rights reserved.</div>
+  </footer>
+  <script src="menu.js"></script>
+</body>
+</html>
