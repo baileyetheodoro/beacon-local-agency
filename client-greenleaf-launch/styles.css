@@ -1,10 +1,10 @@
-/* MISSING: brand colors (--ink, --text, --paper, --surface, --accent, --muted) not on intake form — template defaults retained */
+/* MISSING: --ink, --text, --paper, --surface, --muted not on intake form — template defaults retained */
 :root {
   --ink: #18332f;
   --text: #52605b;
   --paper: #fbfaf5;
   --surface: #ffffff;
-  --accent: #c98b3c;
+  --accent: #4a7c3f;
   --muted: #e9f0e9;
   --line: rgba(20, 30, 36, 0.14);
 }
