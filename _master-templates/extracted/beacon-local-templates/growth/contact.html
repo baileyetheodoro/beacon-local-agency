@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact {{BUSINESS_NAME}} | {{CITY_OR_AREA}}</title>
+  <meta name="description" content="Contact {{BUSINESS_NAME}} in {{CITY_OR_AREA}}.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <a class="brand" href="index.html">{{BUSINESS_NAME}}</a>
+      <button class="menu-toggle" type="button" aria-controls="site-menu" aria-expanded="false">
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        Menu
+      </button>
+      <div class="nav-links" id="site-menu">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="blog.html">Blog</a>
+        <a class="button" href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="page-hero"><div class="container"><p class="eyebrow">Contact</p><h1>{{CONTACT_HEADLINE}}</h1><p class="lead">{{CONTACT_COPY}}</p></div></section>
+    <section><div class="container split"><div><h2>{{FINAL_PITCH_HEADLINE}}</h2><p>{{FINAL_PITCH_COPY}}</p><a class="button" href="mailto:{{EMAIL}}">{{PRIMARY_CTA}}</a></div><div class="card dark"><p><strong>Phone:</strong> {{PHONE}}</p><p><strong>Email:</strong> {{EMAIL}}</p><p><strong>Area:</strong> {{CITY_OR_AREA}}</p></div></div></section>
+  </main>
+  <footer>
+    <div class="container">&copy; {{YEAR}} {{BUSINESS_NAME}}. All rights reserved.</div>
+  </footer>
+  <script src="menu.js"></script>
+</body>
+</html>
